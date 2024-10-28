@@ -1,0 +1,47 @@
+.dialog {
+  position: relative;
+  z-index: 50;
+}
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  opacity: 0.3;
+}
+.panelWrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+@media screen and (max-width: 768px) {
+  .panelWrapper {
+    padding: 10px;
+  }
+}
+
+.panel {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  min-width: max-content;
+}
+
+.header {
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.title {
+  font-size: 1.2rem;
+}
+.closeButton {
+  font-size: 20px;
+  margin-left: auto;
+  margin-bottom: -3px;
+  min-width: max-content;
+}

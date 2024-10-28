@@ -1,0 +1,17 @@
+@media screen and (max-width: 768px) {
+  .managePage {
+    grid-template-columns: 1fr;
+  }
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.paginator {
+  margin-top: auto;
+  padding-top: 20px;
+  margin-bottom: 10px;
+}

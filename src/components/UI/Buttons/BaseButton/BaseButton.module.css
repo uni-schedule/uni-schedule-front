@@ -1,0 +1,46 @@
+.baseButton {
+  position: relative;
+  background-color: #ffaa2aff;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.baseButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.baseButton:hover:not([disabled]):not(:active) {
+  background-color: #ff9f10;
+}
+
+.baseButton:focus-visible {
+  outline: 2px solid #ff6410;
+}
+
+.loaderWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentWrapperHidden {
+  display: inline-block;
+  visibility: hidden;
+}

@@ -1,0 +1,33 @@
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.pageItem {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.pageItem:hover:not(.active) {
+  background-color: #e6e6e6;
+}
+
+.active {
+  background-color: #ffaa2aff;
+  color: #fff;
+  border-color: #ffaa2aff;
+}
+
+.pageItem:focus-visible {
+  outline: 2px solid #ff6410;
+}

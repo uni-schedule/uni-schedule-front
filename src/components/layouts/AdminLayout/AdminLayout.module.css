@@ -1,0 +1,71 @@
+.adminLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) 3fr;
+  column-gap: 20px;
+  row-gap: 10px;
+  padding: 10px 0;
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .adminLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  color: #fff;
+}
+.titlePanel {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #ff9f10;
+}
+.navigationPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+.scheduleSelect {
+  width: 100%;
+}
+.scheduleSelectWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+}
+.scheduleSelectTitle {
+  font-size: 1rem;
+  font-weight: 500;
+}
+.scheduleCreateButtonWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.scheduleCreateButton {
+  color: #fff;
+  background-color: #ffaa2aff;
+  border-radius: 8px;
+  min-width: 41px;
+  transition: background-color 0.2s ease;
+}
+.scheduleCreateButton:hover {
+  background-color: #ff9f10;
+}
+.scheduleCreateButtonIcon {
+  min-width: max-content;
+  font-size: 1.2rem;
+  margin-bottom: -4px;
+}

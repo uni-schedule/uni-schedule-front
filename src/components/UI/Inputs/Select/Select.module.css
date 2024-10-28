@@ -1,0 +1,71 @@
+.button {
+  position: relative;
+  border: 1px solid #eaeaea;
+  background-color: #fff;
+  border-radius: 8px;
+  color: #000;
+  padding: 10px 15px;
+  text-align: left;
+  text-decoration: none;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  flex-direction: row;
+  white-space: nowrap;
+  padding-right: 35px;
+  transition: background-color 0.2s ease;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.buttonText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.button:hover:not([disabled]):not(:active) {
+  background-color: #f0f0f0;
+}
+
+.button:focus-visible {
+  outline: 2px solid #ff6410;
+}
+.button[data-open] .icon {
+  transform: rotate(180deg) translateY(-1px);
+}
+.icon {
+  position: absolute;
+  right: 15px;
+  white-space: nowrap;
+  min-width: max-content;
+  font-size: 0.8rem;
+}
+.options {
+  margin-top: 5px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 30px 0 rgba(103, 70, 54, 0.1);
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.option {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+.option:hover {
+  background-color: #f0f0f0;
+}
+.inputLabel {
+  margin-left: 5px;
+  margin-bottom: 2px;
+  font-size: 0.8rem;
+  display: block;
+}

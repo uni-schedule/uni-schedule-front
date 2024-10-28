@@ -1,0 +1,10 @@
+.text {
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.textAccent {
+    color: #ffaa2a;
+    font-weight: 500;
+    text-decoration: underline;
+}
