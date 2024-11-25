@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
-import Styles from "./BaseButton.module.css";
 import Loader from "../../Loader/Loader";
+import Styles from "./BaseButton.module.css";
 
 interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -9,14 +9,15 @@ interface BaseButtonProps
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isLoading?: boolean;
   icon?: React.ReactNode;
+  className?: string;
 }
 
 const BaseButton = forwardRef<HTMLButtonElement, BaseButtonProps>(
-  ({ children, disabled, onClick, isLoading, icon }, ref) => {
+  ({ children, disabled, onClick, isLoading, icon, className }, ref) => {
     return (
       <button
         ref={ref}
-        className={Styles.baseButton}
+        className={[Styles.baseButton, className].join(" ")}
         disabled={disabled}
         onClick={onClick}
       >

@@ -1,0 +1,66 @@
+.pairData {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.pairAdd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: 1px dashed #454545;
+  color: #454545;
+  border-radius: 6px;
+  width: 100%;
+}
+.addIcon {
+  fill: #454545;
+}
+.positionLabel {
+  font-size: 0.75rem;
+}
+.positionLabelEven {
+  color: #39ace7;
+}
+.positionLabelOdd {
+  color: #e73939;
+}
+.positionLabelSingle {
+  color: rgb(226, 141, 12);
+}
+.subjectTitle {
+  line-height: 1.25;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #454545;
+}
+.tagsWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.tag {
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ffaa2aff;
+  color: #454545;
+  line-height: 1rem;
+  font-size: 0.875rem;
+  display: inline-block;
+}
+.editButton {
+  width: 100%;
+  text-align: left;
+  color: #454545;
+}
+.editIcon {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 0.875rem;
+  margin-bottom: -1px;
+}

@@ -1,10 +1,10 @@
-import AppWrapper from "./components/app/AppWrapper.tsx";
 import { RouterProvider } from "@tanstack/react-router";
-import { router } from "./main.tsx";
-import { useAuth } from "./stores/authStore.tsx";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import AppWrapper from "./components/app/AppWrapper.tsx";
+import { router } from "./main.tsx";
+import { useAuth } from "./stores/authStore.tsx";
 
 const queryClient = new QueryClient();
 
@@ -14,7 +14,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <AppWrapper>
         <ToastContainer
-          position="top-right"
+          position="top-center"
           autoClose={1500}
           limit={3}
           hideProgressBar={false}

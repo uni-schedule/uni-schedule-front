@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
-import Style from "./SubjectsPage.module.css";
 import { FaPlus } from "react-icons/fa6";
-import BaseButton from "../../../components/UI/Buttons/BaseButton/BaseButton.tsx";
-import { useGetSubjects } from "../../../hooks/subjects/useGetSubjects.ts";
-import { useSchedule } from "../../../stores/scheduleStore.tsx";
-import SubjectModal, {
-  SubjectModalMethods,
-} from "../../../components/Modals/Subjects/SubjectModal/SubjectModal.tsx";
-import SubjectsTableView from "../../../components/Tables/Subjects/SubjectsTableView.tsx";
 import {
   DomainSubject,
   DomainUpdateSubjectDTO,
 } from "../../../api/client/api.ts";
-import { useDeleteSubject } from "../../../hooks/subjects/useDeleteSubject.ts";
+import SubjectModal, {
+  SubjectModalMethods,
+} from "../../../components/Modals/Subjects/SubjectModal/SubjectModal.tsx";
+import SubjectsTableView from "../../../components/Tables/Subjects/SubjectsTableView.tsx";
+import BaseButton from "../../../components/UI/Buttons/BaseButton/BaseButton.tsx";
 import { useCreateSubject } from "../../../hooks/subjects/useCreateSubject.ts";
+import { useDeleteSubject } from "../../../hooks/subjects/useDeleteSubject.ts";
+import { useGetSubjects } from "../../../hooks/subjects/useGetSubjects.ts";
 import { useUpdateSubject } from "../../../hooks/subjects/useUpdateSubject.ts";
+import { useSchedule } from "../../../stores/scheduleStore.tsx";
+import Style from "./SubjectsPage.module.css";
 
 const SubjectsPage: React.FC = () => {
   const { currentSchedule } = useSchedule();
@@ -39,10 +39,12 @@ const SubjectsPage: React.FC = () => {
 
   const onSubmitCreate = (data) => {
     if (isLoading) return;
+    data.name = data.name.trim();
     mutate({ ...data, schedule_id: currentSchedule?.id! });
   };
   const onSubmitUpdate = (data: DomainUpdateSubjectDTO) => {
     if (isUpdateLoading) return;
+    data.name = data.name.trim();
     updateSubject({
       data: data,
       id: editSubject!.id,

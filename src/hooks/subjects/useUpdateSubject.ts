@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import api from "../../api";
 import { toast } from "react-toastify";
+import api from "../../api";
 import { DomainUpdateSubjectDTO } from "../../api/client";
 
 interface UpdateSubjectData {
@@ -13,7 +13,7 @@ export function useUpdateSubject() {
   const { mutate, data, error, isLoading, isSuccess, isError } = useMutation({
     mutationKey: ["subject update"],
     mutationFn: async (data: UpdateSubjectData) =>
-      api.Subject.subjectsUpdate(Number(data.id), data.data),
+      await api.Subject.subjectsUpdate(Number(data.id), data.data),
     onSuccess: () => {
       toast("Предмет успешно обновлён", {
         type: "success",

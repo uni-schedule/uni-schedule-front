@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "react-query";
-import api from "../../api";
 import { toast } from "react-toastify";
+import api from "../../api";
 import { DomainCreateSubjectDTO } from "../../api/client";
 
 export function useCreateSubject() {
@@ -8,7 +8,7 @@ export function useCreateSubject() {
   const { mutate, data, error, isLoading, isSuccess, isError } = useMutation({
     mutationKey: ["subject create"],
     mutationFn: async (data: DomainCreateSubjectDTO) =>
-      api.Subject.subjectsCreate(data),
+      await api.Subject.subjectsCreate(data),
     onSuccess: () => {
       toast("Предмет успешно добавлен", {
         type: "success",

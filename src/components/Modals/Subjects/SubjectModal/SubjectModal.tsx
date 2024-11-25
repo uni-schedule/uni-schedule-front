@@ -1,17 +1,17 @@
-import Modal from "../../../UI/Modals/Modal/Modal";
-import styles from "./SubjectModal.module.css";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useImperativeHandle } from "react";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { DomainCreateSubjectDTO } from "../../../../api/client";
 import {
   maxMsg,
   minMsg,
   requiredMsg,
 } from "../../../../helpers/validatorMessages";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import TextInput from "../../../UI/Inputs/TextInput/TextInput";
 import BaseButton from "../../../UI/Buttons/BaseButton/BaseButton";
-import { useImperativeHandle } from "react";
-import { DomainCreateSubjectDTO } from "../../../../api/client";
+import TextInput from "../../../UI/Inputs/TextInput/TextInput";
+import Modal from "../../../UI/Modals/Modal/Modal";
+import styles from "./SubjectModal.module.css";
 
 export type SubjectModalMethods = {
   reset: () => void;
@@ -44,7 +44,7 @@ const SubjectModal = ({
       name: yup
         .string()
         .min(4, minMsg(4))
-        .max(50, maxMsg(50))
+        .max(100, maxMsg(100))
         .required(requiredMsg),
     });
 

@@ -55,17 +55,44 @@
   gap: 5px;
 }
 .option {
+  position: relative;
   cursor: pointer;
   padding: 5px 10px;
+  padding-left: 35px;
   border-radius: 8px;
   transition: background-color 0.2s ease;
 }
 .option:hover {
   background-color: #f0f0f0;
 }
+.option[data-selected] {
+  background-color: #f0f0f0;
+}
+
 .inputLabel {
   margin-left: 5px;
   margin-bottom: 2px;
   font-size: 0.8rem;
   display: block;
+}
+.option[data-selected] .buttonIcon {
+  display: block !important;
+}
+.buttonIcon {
+  display: none;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.textInputLabel {
+  margin-left: 5px;
+  margin-bottom: 4px;
+  font-size: 0.8rem;
+  display: block;
+}
+.textInputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }

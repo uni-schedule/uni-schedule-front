@@ -1,0 +1,17 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1 1 0;
+  min-width: 250px;
+  border-radius: 8px;
+  background-color: #fafafa;
+  padding: 10px;
+}
+.title {
+  font-size: 1.2rem;
+  text-align: center;
+}
+.content {
+  margin-top: 10px;
+}

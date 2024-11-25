@@ -1,19 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
-import Style from "./TeachersPage.module.css";
 import { FaPlus } from "react-icons/fa6";
-import BaseButton from "../../../components/UI/Buttons/BaseButton/BaseButton.tsx";
-import { useGetTeachers } from "../../../hooks/teachers/useGetTeachers.ts";
-import { useCreateTeacher } from "../../../hooks/teachers/useCreateTeacher.ts";
-import { useSchedule } from "../../../stores/scheduleStore.tsx";
-import { useUpdateTeacher } from "../../../hooks/teachers/useUpdateTeacher.ts";
-import { useDeleteTeacher } from "../../../hooks/teachers/useDeleteTeacher.ts";
 import {
   DomainTeacher,
   DomainTeacherUpdateDTO,
 } from "../../../api/client/api.ts";
+import TeacherModal, {
+  TeacherModalMethods,
+} from "../../../components/Modals/Teachers/CreateTeacherModal/TeacherModal.tsx";
 import TeachersTableView from "../../../components/Tables/Teachers/TeachersTableView.tsx";
-import { TeacherModalMethods } from "../../../components/Modals/Teachers/CreateTeacherModal/TeacherModal.tsx";
-import TeacherModal from "../../../components/Modals/Teachers/CreateTeacherModal/TeacherModal.tsx";
+import BaseButton from "../../../components/UI/Buttons/BaseButton/BaseButton.tsx";
+import { useCreateTeacher } from "../../../hooks/teachers/useCreateTeacher.ts";
+import { useDeleteTeacher } from "../../../hooks/teachers/useDeleteTeacher.ts";
+import { useGetTeachers } from "../../../hooks/teachers/useGetTeachers.ts";
+import { useUpdateTeacher } from "../../../hooks/teachers/useUpdateTeacher.ts";
+import { useSchedule } from "../../../stores/scheduleStore.tsx";
+import Style from "./TeachersPage.module.css";
 
 const TeachersPage: React.FC = () => {
   const { currentSchedule } = useSchedule();
@@ -39,12 +40,21 @@ const TeachersPage: React.FC = () => {
     surname: "",
   };
 
-  const onSubmitCreate = (data) => {
+  const onSubmitCreate = (
+    data: Omit<DomainTeacherUpdateDTO, "schedule_id">,
+  ) => {
     if (isLoading) return;
+
+    data.first_name = data.first_name.trim();
+    data.last_name = data.last_name.trim();
+    data.surname = data.surname.trim();
     mutate({ ...data, schedule_id: currentSchedule?.id! });
   };
   const onSubmitUpdate = (data: DomainTeacherUpdateDTO) => {
     if (isUpdateLoading) return;
+    data.first_name = data.first_name.trim();
+    data.last_name = data.last_name.trim();
+    data.surname = data.surname.trim();
     updateTeacher({
       data: data,
       id: editTeacher!.id,

@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from "react-query";
-import api from "../../api";
 import { toast } from "react-toastify";
+import api from "../../api";
 import { DomainUpdateClassDTO } from "../../api/client";
+import { translateErrorWithFallback } from "../../helpers/apiErrors";
 
 interface UpdateClassData {
   id: number | string;
@@ -13,15 +14,15 @@ export function useUpdateClass() {
   const { mutate, data, error, isLoading, isSuccess, isError } = useMutation({
     mutationKey: ["class update"],
     mutationFn: async (data: UpdateClassData) =>
-      api.Class.classesUpdate(Number(data.id), data.data),
+      await api.Class.classesUpdate(Number(data.id), data.data),
     onSuccess: () => {
       toast("Пара успешно обновлена", {
         type: "success",
       });
-      client.invalidateQueries({ queryKey: ["classes all"] });
+      client.invalidateQueries({ queryKey: ["classes all", "schedule view"] });
     },
-    onError: () => {
-      toast("Не удалось обновить пару", {
+    onError: (err) => {
+      toast(translateErrorWithFallback(err, "Не удалось обновить пару"), {
         type: "error",
       });
     },

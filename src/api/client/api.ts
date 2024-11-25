@@ -37,10 +37,28 @@ export interface DomainClass {
     'class_type': DomainClassType;
     /**
      * 
+     * @type {DomainDay}
+     * @memberof DomainClass
+     */
+    'day_of_week': DomainDay;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DomainClass
+     */
+    'even_week': boolean;
+    /**
+     * 
      * @type {number}
      * @memberof DomainClass
      */
     'id': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainClass
+     */
+    'number': number;
     /**
      * 
      * @type {number}
@@ -69,10 +87,10 @@ export interface DomainClass {
  */
 
 export const DomainClassType = {
-    Lecture: 'lecture',
-    Practice: 'practice',
-    Lab: 'lab',
-    Combined: 'combined'
+    ClassTypeLecture: 'lecture',
+    ClassTypePractice: 'practice',
+    ClassTypeLab: 'lab',
+    ClassTypeCombined: 'combined'
 } as const;
 
 export type DomainClassType = typeof DomainClassType[keyof typeof DomainClassType];
@@ -92,10 +110,28 @@ export interface DomainClassView {
     'class_type': DomainClassType;
     /**
      * 
+     * @type {DomainDay}
+     * @memberof DomainClassView
+     */
+    'day_of_week': DomainDay;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DomainClassView
+     */
+    'even_week': boolean;
+    /**
+     * 
      * @type {number}
      * @memberof DomainClassView
      */
     'id': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainClassView
+     */
+    'number': number;
     /**
      * 
      * @type {DomainSubjectView}
@@ -123,6 +159,24 @@ export interface DomainCreateClassDTO {
      * @memberof DomainCreateClassDTO
      */
     'class_type': DomainClassType;
+    /**
+     * 
+     * @type {DomainDay}
+     * @memberof DomainCreateClassDTO
+     */
+    'day_of_week': DomainDay;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DomainCreateClassDTO
+     */
+    'even_week': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainCreateClassDTO
+     */
+    'number': number;
     /**
      * 
      * @type {number}
@@ -220,6 +274,12 @@ export interface DomainPagination {
 export interface DomainSchedule {
     /**
      * 
+     * @type {string}
+     * @memberof DomainSchedule
+     */
+    'created_at': string;
+    /**
+     * 
      * @type {number}
      * @memberof DomainSchedule
      */
@@ -230,6 +290,12 @@ export interface DomainSchedule {
      * @memberof DomainSchedule
      */
     'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainSchedule
+     */
+    'title': string;
     /**
      * 
      * @type {number}
@@ -240,60 +306,15 @@ export interface DomainSchedule {
 /**
  * 
  * @export
- * @interface DomainScheduleEntryView
- */
-export interface DomainScheduleEntryView {
-    /**
-     * 
-     * @type {number}
-     * @memberof DomainScheduleEntryView
-     */
-    'class_number': number;
-    /**
-     * 
-     * @type {DomainDay}
-     * @memberof DomainScheduleEntryView
-     */
-    'day': DomainDay;
-    /**
-     * 
-     * @type {DomainClassView}
-     * @memberof DomainScheduleEntryView
-     */
-    'even': DomainClassView;
-    /**
-     * 
-     * @type {number}
-     * @memberof DomainScheduleEntryView
-     */
-    'id': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof DomainScheduleEntryView
-     */
-    'is_static': boolean;
-    /**
-     * 
-     * @type {DomainClassView}
-     * @memberof DomainScheduleEntryView
-     */
-    'odd': DomainClassView;
-}
-
-
-/**
- * 
- * @export
  * @interface DomainScheduleView
  */
 export interface DomainScheduleView {
     /**
      * 
-     * @type {Array<DomainScheduleEntryView>}
+     * @type {{ [key: string]: { [key: string]: Array<DomainClassView>; }; }}
      * @memberof DomainScheduleView
      */
-    'entries': Array<DomainScheduleEntryView>;
+    'entries': { [key: string]: { [key: string]: Array<DomainClassView>; }; };
     /**
      * 
      * @type {number}
@@ -306,6 +327,12 @@ export interface DomainScheduleView {
      * @memberof DomainScheduleView
      */
     'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DomainScheduleView
+     */
+    'title': string;
     /**
      * 
      * @type {number}
@@ -495,6 +522,24 @@ export interface DomainUpdateClassDTO {
     'class_type': DomainClassType;
     /**
      * 
+     * @type {DomainDay}
+     * @memberof DomainUpdateClassDTO
+     */
+    'day_of_week': DomainDay;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof DomainUpdateClassDTO
+     */
+    'even_week': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof DomainUpdateClassDTO
+     */
+    'number': number;
+    /**
+     * 
      * @type {number}
      * @memberof DomainUpdateClassDTO
      */
@@ -552,6 +597,12 @@ export interface HandlerCreateScheduleRequest {
      * @memberof HandlerCreateScheduleRequest
      */
     'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HandlerCreateScheduleRequest
+     */
+    'title': string;
 }
 /**
  * 
@@ -582,25 +633,6 @@ export interface HandlerGetMySchedulesResponse {
      * 
      * @type {DomainPagination}
      * @memberof HandlerGetMySchedulesResponse
-     */
-    'pagination': DomainPagination;
-}
-/**
- * 
- * @export
- * @interface HandlerGetScheduleClassesResponse
- */
-export interface HandlerGetScheduleClassesResponse {
-    /**
-     * 
-     * @type {Array<DomainClassView>}
-     * @memberof HandlerGetScheduleClassesResponse
-     */
-    'data': Array<DomainClassView>;
-    /**
-     * 
-     * @type {DomainPagination}
-     * @memberof HandlerGetScheduleClassesResponse
      */
     'pagination': DomainPagination;
 }
@@ -718,6 +750,12 @@ export interface HandlerUpdateScheduleRequest {
      * @memberof HandlerUpdateScheduleRequest
      */
     'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HandlerUpdateScheduleRequest
+     */
+    'title': string;
 }
 
 /**
@@ -1130,53 +1168,6 @@ export const ClassApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Get Schedule\'s Classes
-         * @summary Get Schedule\'s Classes
-         * @param {number} scheduleId Schedule ID
-         * @param {number} [limit] Limit
-         * @param {number} [offset] Offset
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        classesGetSchedule: async (scheduleId: number, limit?: number, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'scheduleId' is not null or undefined
-            assertParamExists('classesGetSchedule', 'scheduleId', scheduleId)
-            const localVarPath = `/schedules/{schedule_id}/classes`
-                .replace(`{${"schedule_id"}}`, encodeURIComponent(String(scheduleId)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
-
-            if (limit !== undefined) {
-                localVarQueryParameter['limit'] = limit;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Update Class
          * @summary Update Class
          * @param {number} id Class ID
@@ -1269,21 +1260,6 @@ export const ClassApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Get Schedule\'s Classes
-         * @summary Get Schedule\'s Classes
-         * @param {number} scheduleId Schedule ID
-         * @param {number} [limit] Limit
-         * @param {number} [offset] Offset
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async classesGetSchedule(scheduleId: number, limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HandlerGetScheduleClassesResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.classesGetSchedule(scheduleId, limit, offset, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['ClassApi.classesGetSchedule']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
          * Update Class
          * @summary Update Class
          * @param {number} id Class ID
@@ -1338,18 +1314,6 @@ export const ClassApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.classesGetById(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get Schedule\'s Classes
-         * @summary Get Schedule\'s Classes
-         * @param {number} scheduleId Schedule ID
-         * @param {number} [limit] Limit
-         * @param {number} [offset] Offset
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        classesGetSchedule(scheduleId: number, limit?: number, offset?: number, options?: RawAxiosRequestConfig): AxiosPromise<HandlerGetScheduleClassesResponse> {
-            return localVarFp.classesGetSchedule(scheduleId, limit, offset, options).then((request) => request(axios, basePath));
-        },
-        /**
          * Update Class
          * @summary Update Class
          * @param {number} id Class ID
@@ -1398,18 +1362,6 @@ export interface ClassApiInterface {
      * @memberof ClassApiInterface
      */
     classesGetById(id: number, options?: RawAxiosRequestConfig): AxiosPromise<DomainClass>;
-
-    /**
-     * Get Schedule\'s Classes
-     * @summary Get Schedule\'s Classes
-     * @param {number} scheduleId Schedule ID
-     * @param {number} [limit] Limit
-     * @param {number} [offset] Offset
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ClassApiInterface
-     */
-    classesGetSchedule(scheduleId: number, limit?: number, offset?: number, options?: RawAxiosRequestConfig): AxiosPromise<HandlerGetScheduleClassesResponse>;
 
     /**
      * Update Class
@@ -1465,20 +1417,6 @@ export class ClassApi extends BaseAPI implements ClassApiInterface {
      */
     public classesGetById(id: number, options?: RawAxiosRequestConfig) {
         return ClassApiFp(this.configuration).classesGetById(id, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Get Schedule\'s Classes
-     * @summary Get Schedule\'s Classes
-     * @param {number} scheduleId Schedule ID
-     * @param {number} [limit] Limit
-     * @param {number} [offset] Offset
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ClassApi
-     */
-    public classesGetSchedule(scheduleId: number, limit?: number, offset?: number, options?: RawAxiosRequestConfig) {
-        return ClassApiFp(this.configuration).classesGetSchedule(scheduleId, limit, offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

@@ -1,13 +1,13 @@
-import { useMutation, useQueryClient } from "react-query";
-import api from "../../api";
-import { toast } from "react-toastify";
+import { useMutation, useQueryClient } from "react-query"
+import { toast } from "react-toastify"
+import api from "../../api"
 
 export function useDeleteSubject() {
   const client = useQueryClient();
   const { mutate, data, error, isLoading, isSuccess, isError } = useMutation({
     mutationKey: ["subject delete"],
     mutationFn: async (id: number | string) =>
-      api.Subject.subjectsDelete(Number(id)),
+      await api.Subject.subjectsDelete(Number(id)),
     onSuccess: () => {
       toast("Предмет успешно удалён", {
         type: "success",

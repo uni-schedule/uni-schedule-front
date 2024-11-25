@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useQuery } from "react-query";
 import api from "../../api";
-import { usePagination } from "../common/usePagination";
 import { pageToOffset } from "../../helpers/api";
+import { usePagination } from "../common/usePagination";
 
 async function getMySchedules(limit: number, page: number) {
   const response = await api.Schedule.scheduleGetMy(
@@ -18,7 +18,7 @@ export function useGetMySchedules(limit: number) {
 
   const { data, isLoading, isSuccess, isError } = useQuery({
     queryKey: ["schedules my", page],
-    queryFn: () => getMySchedules(limit, page),
+    queryFn: async () => await getMySchedules(limit, page),
     select: (data) => data.data,
   });
 

@@ -2,9 +2,10 @@ import React from "react";
 
 interface LoaderProps {
   color?: "accent" | "white" | "black";
+  className?: string;
 }
 
-const Loader: React.FC<LoaderProps> = ({ color }) => {
+const Loader: React.FC<LoaderProps> = ({ color, className }) => {
   let loaderColor: string;
 
   switch (color) {
@@ -20,6 +21,7 @@ const Loader: React.FC<LoaderProps> = ({ color }) => {
 
   return (
     <svg
+      className={className}
       fill={loaderColor}
       width="24"
       height="24"
