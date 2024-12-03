@@ -16,6 +16,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as RegisterImport } from './routes/register'
 import { Route as LoginImport } from './routes/login'
 import { Route as Import } from './routes/*'
+import { Route as ScheduleSlugImport } from './routes/$scheduleSlug'
 import { Route as IndexImport } from './routes/index'
 import { Route as ManageAdminLayoutImport } from './routes/manage/_adminLayout'
 import { Route as ManageAdminLayoutIndexImport } from './routes/manage/_adminLayout/index'
@@ -46,6 +47,11 @@ const LoginRoute = LoginImport.update({
 
 const Route = Import.update({
   path: '/*',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ScheduleSlugRoute = ScheduleSlugImport.update({
+  path: '/$scheduleSlug',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -88,6 +94,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/$scheduleSlug': {
+      id: '/$scheduleSlug'
+      path: '/$scheduleSlug'
+      fullPath: '/$scheduleSlug'
+      preLoaderRoute: typeof ScheduleSlugImport
       parentRoute: typeof rootRoute
     }
     '/*': {
@@ -188,6 +201,7 @@ const ManageRouteWithChildren =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/$scheduleSlug': typeof ScheduleSlugRoute
   '/*': typeof Route
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
@@ -200,6 +214,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/$scheduleSlug': typeof ScheduleSlugRoute
   '/*': typeof Route
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
@@ -212,6 +227,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/$scheduleSlug': typeof ScheduleSlugRoute
   '/*': typeof Route
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
@@ -227,6 +243,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/$scheduleSlug'
     | '/*'
     | '/login'
     | '/register'
@@ -238,6 +255,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/$scheduleSlug'
     | '/*'
     | '/login'
     | '/register'
@@ -248,6 +266,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/$scheduleSlug'
     | '/*'
     | '/login'
     | '/register'
@@ -262,6 +281,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ScheduleSlugRoute: typeof ScheduleSlugRoute
   Route: typeof Route
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
@@ -270,6 +290,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ScheduleSlugRoute: ScheduleSlugRoute,
   Route: Route,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
@@ -289,6 +310,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/$scheduleSlug",
         "/*",
         "/login",
         "/register",
@@ -297,6 +319,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/$scheduleSlug": {
+      "filePath": "$scheduleSlug.tsx"
     },
     "/*": {
       "filePath": "*.tsx"

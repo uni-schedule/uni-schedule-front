@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { useQuery } from "react-query";
 import api from "../../api";
 
@@ -8,10 +9,15 @@ async function getScheduleView(slug: string) {
 }
 
 export function useGetScheduleView(slug: string) {
-  const { data, isLoading, isSuccess, isError, refetch } = useQuery({
+  const { data, isLoading, isSuccess, isError, refetch, error } = useQuery({
     queryKey: ["schedule view", slug],
     queryFn: async () => await getScheduleView(slug),
     select: (data) => data.data,
+    retry(_, error) {
+      const err = error as AxiosError;
+      if (err.response?.status === 404) return false;
+      return true;
+    },
   });
 
   return {
@@ -20,5 +26,6 @@ export function useGetScheduleView(slug: string) {
     isSuccess,
     isError,
     refetch,
+    error,
   };
 }

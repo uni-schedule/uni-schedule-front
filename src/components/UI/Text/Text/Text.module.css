@@ -1,10 +1,11 @@
 .text {
-    font-size: 0.9rem;
-    font-weight: 300;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--color-copy);
 }
 
 .textAccent {
-    color: #ffaa2a;
-    font-weight: 500;
-    text-decoration: underline;
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: underline;
 }

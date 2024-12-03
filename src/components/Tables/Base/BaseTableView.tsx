@@ -35,6 +35,7 @@ function BaseTableView<T>({
         title: "Действия",
         width: "50px",
         align: "center",
+        key: "actions",
         render: (item: T) => (
           <TableActions
             data={item}

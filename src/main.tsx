@@ -1,11 +1,13 @@
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import "./styles/styles.css";
 import { createRouter } from "@tanstack/react-router";
-import { routeTree } from "./routeTree.gen.ts";
+import dayjs from "dayjs";
+import isoWeek from "dayjs/plugin/isoWeek";
+import { createRoot } from "react-dom/client";
 import api from "./api";
+import App from "./App.tsx";
+import { routeTree } from "./routeTree.gen.ts";
 import { AuthProvider } from "./stores/authStore.tsx";
 import { ScheduleProvider } from "./stores/scheduleStore.tsx";
+import "./styles/styles.css";
 
 export const router = createRouter({
   routeTree,
@@ -20,6 +22,7 @@ declare module "@tanstack/react-router" {
   }
 }
 
+dayjs.extend(isoWeek);
 api.initAxiosInterceptors();
 
 createRoot(document.getElementById("root")!).render(

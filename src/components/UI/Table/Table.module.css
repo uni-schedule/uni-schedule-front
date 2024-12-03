@@ -1,6 +1,6 @@
 .tableWrapper {
   width: 100%;
-  border: 1px solid #eaeaea;
+  border: 2px solid var(--color-border);
   border-radius: 8px;
   position: relative;
   overflow: hidden;
@@ -16,35 +16,39 @@
 .table {
   width: 100%;
   border-collapse: collapse;
+  color: var(--color-copy);
 }
 
 .table:focus-visible {
-  outline: 2px solid #ff6410;
+  outline: 2px solid var(--color-primary);
 }
 
 thead {
-  background-color: #fff;
+  background-color: var(--color-foreground);
   position: sticky;
   top: 0;
   z-index: 1;
   box-shadow: 0 0 30px 0 rgba(103, 70, 54, 0.1);
+}
+tbody {
+  background-color: var(--color-foreground);
 }
 
 th,
 td {
   padding: 10px;
   text-align: left;
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
 }
 
 th {
-  background-color: #fff;
+  background-color: var(--color-foreground);
   font-weight: 500;
 }
 
 tbody tr:last-child td {
-  background-color: #fff;
+  background-color: var(--color-foreground);
   border-bottom: none;
 }
 .noData {

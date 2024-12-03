@@ -1,34 +1,29 @@
+import { useNavigate, useRouterState } from "@tanstack/react-router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import {
+  FaArrowRightFromBracket,
+  FaBars,
+  FaCalendar,
+  FaChalkboardUser,
+  FaCube,
+  FaPlus,
+} from "react-icons/fa6";
+import { DomainSchedule } from "../../../api/client";
+import { useCreateSchedule } from "../../../hooks/schedules/useCreateSchedule";
+import { useGetMySchedules } from "../../../hooks/schedules/useGetMySchedules";
+import { LoginRoute } from "../../../routes/login";
+import { useAuth } from "../../../stores/authStore";
+import { useSchedule } from "../../../stores/scheduleStore";
+import { clearTokens } from "../../../stores/tokenStore";
+import ScheduleModal, {
+  ScheduleModalMethods,
+} from "../../Modals/Schedules/ScheduleModal/ScheduleModal";
+import Select from "../../UI/Inputs/Select/Select";
+import Loader from "../../UI/Loader/Loader";
 import NavigationSidebar, {
   INavigationSidebarItem,
 } from "../../UI/NavigationSidebar/NavigationSidebar";
 import styles from "./AdminLayout.module.css";
-import { useNavigate, useRouterState } from "@tanstack/react-router";
-import { useAuth } from "../../../stores/authStore";
-import { clearTokens } from "../../../stores/tokenStore";
-import {
-  FaArrowRightFromBracket,
-  FaBookOpen,
-  FaCalendar,
-  FaChalkboardUser,
-  FaCube,
-  FaGear,
-  FaPlus,
-} from "react-icons/fa6";
-import { LoginRoute } from "../../../routes/login";
-import BasePanel from "../../UI/Panels/BasePanel/BasePanel";
-import Select from "../../UI/Inputs/Select/Select";
-import { useGetMySchedules } from "../../../hooks/schedules/useGetMySchedules";
-import { useSchedule } from "../../../stores/scheduleStore";
-import ScheduleModal, {
-  ScheduleModalMethods,
-} from "../../Modals/Schedules/ScheduleModal/ScheduleModal";
-import { useCreateSchedule } from "../../../hooks/schedules/useCreateSchedule";
-import {
-  DomainSchedule,
-  HandlerUpdateScheduleRequest,
-} from "../../../api/client";
-import Loader from "../../UI/Loader/Loader";
 
 export const AdminLayout: React.FC<React.PropsWithChildren> = ({
   children,
@@ -46,7 +41,7 @@ export const AdminLayout: React.FC<React.PropsWithChildren> = ({
   } = useCreateSchedule();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [editSchedule, setEditSchedule] = useState<DomainSchedule | null>(null);
+  const [_, setEditSchedule] = useState<DomainSchedule | null>(null);
 
   const initialValues = {
     slug: "",
@@ -55,7 +50,7 @@ export const AdminLayout: React.FC<React.PropsWithChildren> = ({
 
   const onSubmitCreate = (data) => {
     if (isCreateLoading) return;
-    mutate({ ...data, schedule_id: currentSchedule?.id! });
+    mutate({ ...data });
   };
   const onCloseModal = () => {
     setIsOpen(false);
@@ -67,6 +62,22 @@ export const AdminLayout: React.FC<React.PropsWithChildren> = ({
     if (!isCreateSuccess) return;
     onCloseModal();
   }, [isCreateSuccess]);
+
+  const handleOpenMenu = () => {
+    const nav = document.getElementById("navpanel");
+    if (!nav) return;
+
+    const isShow = nav.getAttribute("data-show") === "1";
+    if (isShow) {
+      nav.setAttribute("data-show", "0");
+      return;
+    }
+    nav.setAttribute("data-show", "1");
+  };
+
+  const handleSidebarClick = () => {
+    document.getElementById("navpanel")?.setAttribute("data-show", "0");
+  };
 
   const { data, isSuccess } = useGetMySchedules(10);
 
@@ -89,13 +100,6 @@ export const AdminLayout: React.FC<React.PropsWithChildren> = ({
         text: "Преподаватели",
         icon: <FaChalkboardUser className={styles.icon} />,
         pathname: "/manage/teachers",
-      },
-      {
-        id: 5,
-        always: true,
-        text: "Аккаунт",
-        icon: <FaGear className={styles.icon} />,
-        pathname: "/manage/settings",
       },
       {
         id: 6,
@@ -148,7 +152,7 @@ export const AdminLayout: React.FC<React.PropsWithChildren> = ({
       />
 
       <div className={styles.adminLayout}>
-        <BasePanel className={styles.navigationPanel}>
+        <div className={styles.navigationPanel} data-show="0" id="navpanel">
           {globalLoading ? (
             <div className={styles.loaderWrapper}>
               <Loader className={styles.loader} color="accent" />
@@ -172,17 +176,27 @@ export const AdminLayout: React.FC<React.PropsWithChildren> = ({
                     labelKey="title"
                     nullLabel="Выберите расписание"
                   />
+                  <button
+                    className={[
+                      styles.scheduleCreateButton,
+                      styles.scheduleMenuButton,
+                    ].join(" ")}
+                    onClick={handleOpenMenu}
+                  >
+                    <FaBars className={styles.scheduleCreateButtonIcon} />
+                  </button>
                 </div>
               </div>
               <NavigationSidebar
                 items={sidebarItemsFormatted}
                 selectedId={selectedID}
+                onClick={handleSidebarClick}
               />
             </>
           )}
-        </BasePanel>
+        </div>
 
-        <BasePanel className={styles.panel}>
+        <div className={styles.panelWrapper}>
           {globalLoading ? (
             <div className={styles.loaderWrapper}>
               <Loader className={styles.loader} color="accent" />
@@ -190,7 +204,7 @@ export const AdminLayout: React.FC<React.PropsWithChildren> = ({
           ) : currentSchedule ? (
             children
           ) : null}
-        </BasePanel>
+        </div>
       </div>
     </>
   );

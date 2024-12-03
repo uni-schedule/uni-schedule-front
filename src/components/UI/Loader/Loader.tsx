@@ -10,13 +10,13 @@ const Loader: React.FC<LoaderProps> = ({ color, className }) => {
 
   switch (color) {
     case "accent":
-      loaderColor = "#ffaa2aff";
+      loaderColor = "var(--color-primary)";
       break;
     case "black":
-      loaderColor = "#000";
+      loaderColor = "var(--color-background)";
       break;
     default:
-      loaderColor = "#fff";
+      loaderColor = "var(--color-copy)";
   }
 
   return (

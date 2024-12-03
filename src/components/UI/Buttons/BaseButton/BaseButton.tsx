@@ -23,7 +23,7 @@ const BaseButton = forwardRef<HTMLButtonElement, BaseButtonProps>(
       >
         {isLoading && (
           <div className={Styles.loaderWrapper}>
-            <Loader />
+            <Loader color="white" />
           </div>
         )}
         {icon}

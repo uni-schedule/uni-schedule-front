@@ -3,8 +3,10 @@
   flex-direction: row;
   border-radius: 8px;
   align-items: center;
-  border: 1px solid #ffaa2aff;
   overflow: hidden;
+  background: var(--color-foreground);
+  border-radius: 16px;
+  color: var(--color-copy);
 }
 .numberWrapper {
   display: flex;
@@ -12,17 +14,22 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 0 5px;
-  background: #ffaa2aff;
+  padding: 0 8px;
+  background: var(--color-primary);
+  color: var(--color-primary-content);
 }
 .number {
-  color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 .content {
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  width: 100%;
+  padding: 7px 10px;
+}
+.pairs {
+  display: flex;
+  flex-direction: column;
   gap: 10px;
   width: 100%;
 }
@@ -32,13 +39,13 @@
   align-items: center;
   gap: 5px;
   padding: 5px;
-  border: 1px dashed #454545;
-  color: #454545;
+  border: 2px dashed var(--color-copy-light);
+  color: var(--color-copy-light);
   border-radius: 6px;
   width: 100%;
 }
 .addIcon {
-  fill: #454545;
+  fill: var(--color-copy-light);
 }
 .classItemEmpty {
   opacity: 0.7;
@@ -46,4 +53,10 @@
 }
 .classItemEmpty:hover {
   opacity: 1;
+}
+.timeWrapper {
+  color: var(--color-copy-light);
+  font-size: 0.85rem;
+  font-weight: 300;
+  margin-bottom: 2px;
 }

@@ -1,16 +1,16 @@
 .adminLayout {
   display: grid;
-  grid-template-columns: minmax(0, 300px) 3fr;
-  column-gap: 20px;
+  grid-template-columns: minmax(0, 250px) 3fr;
   row-gap: 10px;
-  padding: 10px 0;
-  height: 100%;
+  height: 100vh;
+  max-height: 100vh;
   width: 100%;
 }
 
 @media screen and (max-width: 768px) {
   .adminLayout {
     grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr;
   }
 }
 
@@ -18,24 +18,52 @@
   width: 100%;
   overflow-x: hidden;
 }
-
+.panelWrapper {
+  background: var(--color-background);
+  padding: 20px;
+  margin-left: -20px;
+  border-radius: 20px 0 0 20px;
+  overflow-x: hidden;
+}
+@media screen and (max-width: 768px) {
+  .panelWrapper {
+    margin-left: 0;
+    border-radius: 0;
+  }
+}
 .title {
   font-size: 1.5rem;
   font-weight: 500;
   text-align: center;
-  color: #fff;
+  color: var(--color-copy);
 }
 .titlePanel {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #ff9f10;
+  background-color: var(--color-primary-content);
 }
 .navigationPanel {
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 10px;
+  padding-right: 30px;
+  background: var(--color-primary);
 }
+@media screen and (max-width: 768px) {
+  .navigationPanel {
+    padding: 10px 20px;
+    height: fit-content;
+  }
+  .navigationPanel[data-show="0"] nav {
+    display: none;
+  }
+
+  .navigationPanel[data-show="1"] {
+    height: 100vh;
+  }
+}
+
 .scheduleSelect {
   width: 100%;
 }
@@ -55,14 +83,17 @@
   gap: 5px;
 }
 .scheduleCreateButton {
-  color: #fff;
-  background-color: #ffaa2aff;
+  color: var(--color-primary-content);
+  background-color: var(--color-primary-light);
   border-radius: 8px;
   min-width: 41px;
-  transition: background-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 .scheduleCreateButton:hover {
-  background-color: #ff9f10;
+  position: relative;
+  transform: translateY(-3px);
 }
 .scheduleCreateButtonIcon {
   min-width: max-content;
@@ -80,4 +111,13 @@
   justify-content: center;
   height: 100%;
   width: 100%;
+}
+
+.scheduleMenuButton {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .scheduleMenuButton {
+    display: block;
+  }
 }

@@ -9,8 +9,8 @@
   align-items: center;
   gap: 5px;
   padding: 5px;
-  border: 1px dashed #454545;
-  color: #454545;
+  /* border: 1px dashed #454545; */
+  /* color: #454545; */
   border-radius: 6px;
   width: 100%;
 }
@@ -21,19 +21,18 @@
   font-size: 0.75rem;
 }
 .positionLabelEven {
-  color: #39ace7;
+  color: var(--even-color);
 }
 .positionLabelOdd {
-  color: #e73939;
+  color: var(--odd-color);
 }
 .positionLabelSingle {
-  color: rgb(226, 141, 12);
+  color: var(--single-color);
 }
 .subjectTitle {
   line-height: 1.25;
-  font-weight: 500;
   font-size: 0.875rem;
-  color: #454545;
+  color: var(--text-color);
 }
 .tagsWrapper {
   display: flex;
@@ -45,10 +44,10 @@
   width: 100%;
 }
 .tag {
-  padding: 0.125rem 0.25rem;
+  padding: 0.15rem 0.35rem;
   border-radius: 0.5rem;
-  border: 1px solid #ffaa2aff;
-  color: #454545;
+  border: 1px solid var(--color-copy-lighter);
+  color: var(--color-copy-lighter);
   line-height: 1rem;
   font-size: 0.875rem;
   display: inline-block;
@@ -56,11 +55,15 @@
 .editButton {
   width: 100%;
   text-align: left;
-  color: #454545;
+  /* color: #454545; */
 }
 .editIcon {
   display: inline-block;
   margin-left: 5px;
   font-size: 0.875rem;
   margin-bottom: -1px;
+}
+.positionLabelEvenWeek {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }

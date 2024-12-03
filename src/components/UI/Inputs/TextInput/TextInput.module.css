@@ -2,21 +2,22 @@
   font-size: 0.9rem;
   border-radius: 8px;
   padding: 10px 18px;
-  border: 1px solid #eaeaea;
-  background-color: #fff;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-background);
+  color: var(--color-copy);
   width: 100%;
 }
 
 .textInput[aria-invalid="true"] {
-  border: 1px solid #e4351a;
+  border: 1px solid var(--color-error);
 }
 
 .textInput::placeholder {
-  color: #999;
+  color: var(--color-copy-light);
 }
 
 .textInput:focus-visible {
-  outline: 2px solid #ff6410;
+  outline: 2px solid var(--primary-color);
 }
 
 .textInputWrapper {
@@ -29,10 +30,11 @@
   margin-bottom: 2px;
   font-size: 0.8rem;
   display: block;
+  color: var(--color-copy);
 }
 .errorMessage {
   margin-left: 5px;
   margin-top: 5px;
   font-size: 0.8rem;
-  color: #e4351a;
+  color: var(--color-error);
 }

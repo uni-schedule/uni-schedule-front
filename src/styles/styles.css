@@ -1,6 +1,7 @@
 @import "reset.css";
 @import "fonts.css";
+@import "colors.css";
 
 * {
-    font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }

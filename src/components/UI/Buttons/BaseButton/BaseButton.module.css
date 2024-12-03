@@ -1,8 +1,8 @@
 .baseButton {
   position: relative;
-  background-color: #ffaa2aff;
+  background-color: var(--color-primary);
   border-radius: 8px;
-  color: white;
+  color: var(--color-copy);
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -22,11 +22,11 @@
 }
 
 .baseButton:hover:not([disabled]):not(:active) {
-  background-color: #ff9f10;
+  background: var(--color-primary-dark);
 }
 
 .baseButton:focus-visible {
-  outline: 2px solid #ff6410;
+  outline: 2px solid var(--color-outline);
 }
 
 .loaderWrapper {

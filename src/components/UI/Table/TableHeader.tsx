@@ -6,7 +6,7 @@ interface TableHeaderProps {
 
 export interface TableHeaderItem {
   title: string;
-  key?: string;
+  key: string;
   width?: string;
   align?: "left" | "center" | "right";
   render?: (item: any) => React.ReactNode;

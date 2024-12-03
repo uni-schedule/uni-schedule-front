@@ -65,6 +65,7 @@ function Select<T extends SelectItem, V = T | T[keyof T]>({
           padding: 20,
           to: "bottom",
         }}
+        portal={true}
         className={style.options}
         style={{ width: "var(--button-width)" }}
       >
@@ -73,9 +74,9 @@ function Select<T extends SelectItem, V = T | T[keyof T]>({
             <FaCheck className={style.buttonIcon} /> {nullLabel}
           </ListboxOption>
         )}
-        {items.map((item) => (
+        {items.map((item, index) => (
           <ListboxOption
-            key={item.id}
+            key={typeof item.id === "boolean" ? `option-${index}` : item.id}
             value={valueKey ? item[valueKey] : item}
             className={style.option}
           >
