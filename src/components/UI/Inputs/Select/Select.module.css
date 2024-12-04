@@ -76,6 +76,7 @@
   margin-bottom: 2px;
   font-size: 0.8rem;
   display: block;
+  color: var(--color-copy);
 }
 .option[data-selected] .buttonIcon {
   display: block !important;
@@ -88,6 +89,7 @@
   transform: translateY(-50%);
 }
 .textInputLabel {
+  color: var(--color-copy);
   margin-left: 5px;
   margin-bottom: 4px;
   font-size: 0.8rem;
