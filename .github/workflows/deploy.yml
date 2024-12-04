@@ -43,7 +43,7 @@ jobs:
         env:
           FRONTEND_IMAGE: ${{ steps.meta.outputs.tags }}
         run: |
-          docker compose --context remote -f docker-compose.yml up -d
+          DOCKER_HOST=remote docker compose -f docker-compose.yml up -d
 
       - name: cleanup
         run: rm -rf ~/.ssh
