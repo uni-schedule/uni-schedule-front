@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build and Deploy
 
 on:
   push:
@@ -38,7 +38,7 @@ jobs:
           file: "./deploy/Dockerfile"
           push: true
           build-args: |
-            VITE_BASE_API_URL=${{ secrets.VITE_BASE_API_URL }}
+            VITE_BASE_API_URL=${{ env.BACKEND_API_URL }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
