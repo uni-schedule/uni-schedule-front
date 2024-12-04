@@ -80,7 +80,7 @@ jobs:
         env:
           FRONTEND_IMAGE: ${{ steps.meta.outputs.tags }}
         run: |
-          docker --context remote compose -f deploy/docker-compose.yml up -d
+          docker --context remote compose -f deploy/docker-compose.yml up -d --remove-orphans --force-recreate
 
       - name: cleanup
         run: rm -rf ~/.ssh
