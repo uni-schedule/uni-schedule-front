@@ -89,6 +89,7 @@
   transform: translateY(-50%);
 }
 .textInputLabel {
+  color: var(--color-copy);
   margin-left: 5px;
   margin-bottom: 4px;
   font-size: 0.8rem;
