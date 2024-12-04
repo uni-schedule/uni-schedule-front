@@ -1,9 +1,7 @@
 services:
   frontend:
+    image: ${FRONTEND_IMAGE}
     container_name: frontend_nginx
     restart: unless-stopped
-    build:
-      context: ../
-      dockerfile: ./deploy/Dockerfile
     ports:
       - "8000:80"

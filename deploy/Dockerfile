@@ -1,9 +1,14 @@
-FROM node:20-alpine as build
+FROM node:20-alpine AS build
+
+ARG VITE_BASE_API_URL
+ENV VITE_BASE_API_URL=$VITE_BASE_API_URL
+
+RUN echo "VITE_BASE_API_URL=$VITE_BASE_API_URL"
+
 WORKDIR /app
 COPY package.json ./
 RUN npm i --verbose
 COPY . .
-COPY deploy/.prod.env /app/.env
 RUN npm run build
 
 FROM nginx:stable-alpine
